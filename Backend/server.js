@@ -17,6 +17,9 @@ dotenv.config()
 //mongodb connection
 connectDB()
 
+//Routes
+app.use('/api/v1/auth', require('./Routes/authRoute'));
+
 //PORT
 const PORT = process.env.PORT ||8000
 
