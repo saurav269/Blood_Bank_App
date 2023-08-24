@@ -4,6 +4,7 @@ const express = require("express")
 const dotenv = require("dotenv")
 const cors = require("cors")
 const connectDB = require("./Config/db")
+const jwt = require('jsonwebtoken')
 
 //rest object
 const app = express()
@@ -21,7 +22,7 @@ connectDB()
 app.use('/api/v1/auth', require('./Routes/authRoute'));
 
 //PORT
-const PORT = process.env.PORT ||8000
+const PORT = process.env.PORT || 8000
 
 //ROUTES
 app.get("/", (req,res)=>{
