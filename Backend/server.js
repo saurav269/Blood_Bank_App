@@ -20,6 +20,7 @@ connectDB()
 
 //Routes
 app.use('/api/v1/auth', require('./Routes/authRoute'));
+app.use('/api/v1/inventory', require('./Routes/inventoryRoute'));
 
 //PORT
 const PORT = process.env.PORT || 8000
