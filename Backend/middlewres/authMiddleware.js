@@ -12,7 +12,7 @@ module.exports = async(req,res,next)=>{
                     message:'Auth Failed'
                 })
             }else{
-                req.body.userID = decode.id
+                req.body.userID = decode.userID
                 next()
             }
         });
