@@ -1,5 +1,6 @@
 import React from "react";
-import Form from '../../Components/shared/Form/Form'
+import Form from '../../components/shared/Form/Form'
+
 //import Form from "../../components/shared/Form/Form";
 
 const Login = () => {
