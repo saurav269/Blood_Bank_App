@@ -8,7 +8,7 @@ const Form = ({ formType, formTitle, submitButton }) => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("donar");
   const [name, setName] = useState("");
-  const [organizationName, setOrganizationName] = useState("");
+  const [organisationName, setOrganisationName] = useState("");
   const [hospitalName, setHospitalName] = useState("");
   const [website, setWebsite] = useState("");
   const [address, setAddress] = useState("");
@@ -24,7 +24,7 @@ const Form = ({ formType, formTitle, submitButton }) => {
           password,
           role,
           name,
-          organizationName,
+          organisationName,
           hospitalName,
           website,
           address,
@@ -130,12 +130,12 @@ const Form = ({ formType, formTitle, submitButton }) => {
                   )}
                   {role === 'organisation' && (
                       <InputType
-                      label={"Organization Name"}
-                      labelFor={"forOrganizationName"}
+                      label={"Organisation Name"}
+                      labelFor={"forOrganisationName"}
                       type={"text"}
-                      name={"organizationName"}
-                      value={organizationName}
-                      onChange={(e) => setOrganizationName(e.target.value)}
+                      name={"organisationName"}
+                      value={organisationName}
+                      onChange={(e) => setOrganisationName(e.target.value)}
                     />
                   )}
                   {role === 'hospital' && (
