@@ -69,7 +69,7 @@ const loginController=async(req,res)=>{
             success : true,
             message:"User has been Login successfully",
             token,
-            user
+            user,
         })
 
     }catch(err){
@@ -90,7 +90,7 @@ const currentUserController=async(req,res)=>{
         return res.status(200).send({
             sucess : true,
             message:"Getting User Details Successfully",
-            user
+            user,
         })
 
     }catch(err){
@@ -98,7 +98,7 @@ const currentUserController=async(req,res)=>{
         return res.status(500).send({
             sucess:false,
             message:"Unable to get User",
-            err
+            err,
         })
     }
 }
