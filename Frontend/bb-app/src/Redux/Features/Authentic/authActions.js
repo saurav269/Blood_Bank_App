@@ -55,6 +55,7 @@ export const userRegister = createAsyncThunk(
         phone,
       })
       if(data.success) {
+        alert("register successfully")
         toast.success(data.message)
         window.location.replace("/login")
       };
