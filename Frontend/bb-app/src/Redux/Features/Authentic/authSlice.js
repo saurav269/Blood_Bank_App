@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCurrentUser, userLogin, userRegister } from "./authActions";
+import { userLogin, userRegister } from "./authActions";
 
 const token = localStorage.getItem("token")
   ? localStorage.getItem("token")
@@ -22,11 +22,25 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     });
+    // builder.addCase(userLogin.fulfilled, (state, { payload }) => {
+    //   state.loading = false;
+    //   state.user = payload.user;
+    //   state.token = payload.token;
+    // });
     builder.addCase(userLogin.fulfilled, (state, { payload }) => {
-      state.loading = false;
-      state.user = payload.user;
-      state.token = payload.token;
+      if (payload) {
+        // Assuming payload has a user and token property
+        state.user = payload.user;
+        state.token = payload.token;
+        state.loading = false;
+        state.error = null;
+      } else {
+        // Handle the case where the payload is missing or doesn't contain the expected data
+        state.loading = false;
+        state.error = "Invalid response format";
+      }
     });
+    
     builder.addCase(userLogin.rejected, (state, { payload }) => {
       state.loading = false;
       state.error = payload;
@@ -45,24 +59,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = payload;
     });
-    //GETTING CURRENT USER
-    builder.addCase(getCurrentUser.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(getCurrentUser.fulfilled, (state, { payload }) => {
-      state.loading = false;
-      state.user = payload.user;
-    });
-    builder.addCase(getCurrentUser.rejected, (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
-    });
   },
 });
-
-
-
-
 
 export default authSlice;

@@ -1,8 +1,18 @@
 import React from 'react'
 import { BiUserCircle} from 'react-icons/bi'
 import {useSelector} from 'react-redux'
+import { toast } from 'react-toastify';
+import {useNavigate} from 'react-router-dom'
 const Header = () => {
+    const navigate = useNavigate()
+    const {user} = useSelector(state => state.auth)
 
+    //LOGOUT FUNCTIONALITY
+    const handleLogout=()=>{
+        localStorage.clear()
+        toast.success('Logout Successful!')
+        navigate('/login')
+    }
   return (
     <>
         <nav className='navbar'>
@@ -14,10 +24,10 @@ const Header = () => {
                     <li className='nav-item mx-3'>
                         <p className='nav-link'>
                        <BiUserCircle/>
-                            Welcome</p>
+                            Welcome {user?.name}</p>
                     </li>
                     <li className='nav-item mx-3'>
-                        <button className='btn btn-danger'>Logout</button>
+                        <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
                     </li>
                 </ul>
             </div>
