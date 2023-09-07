@@ -1,5 +1,8 @@
 import React from 'react'
+import { BiUserCircle} from 'react-icons/bi'
+import {useSelector} from 'react-redux'
 const Header = () => {
+
   return (
     <>
         <nav className='navbar'>
@@ -9,7 +12,9 @@ const Header = () => {
                 </div>
                 <ul className='navbar-nav flex-row'>
                     <li className='nav-item mx-3'>
-                        <p className='nav-link'>Welcome</p>
+                        <p className='nav-link'>
+                       <BiUserCircle/>
+                            Welcome</p>
                     </li>
                     <li className='nav-item mx-3'>
                         <button className='btn btn-danger'>Logout</button>
