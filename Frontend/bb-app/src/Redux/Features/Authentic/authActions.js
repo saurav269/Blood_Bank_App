@@ -8,11 +8,13 @@ export const userLogin = createAsyncThunk(
   async ({ role, email, password }, { rejectWithValue }) => {
     try {
       const { data } = await API.post("/auth/login", { role, email, password });
-
+      
       if (data.success) {
         localStorage.setItem("token", data.token);
         toast.success(data.message);
-        window.location.replace("/");
+        setTimeout(() => {
+          window.location.replace("/");
+        }, 1000);
         return data; // Return the entire response data for success
       } else {
         // Handle the case where the server responds with an error message
@@ -57,7 +59,7 @@ export const userRegister = createAsyncThunk(
         address,
         phone,
       })
-      if(data.success) {
+      if(data?.success) {
         alert("register successfully")
         toast.success(data.message)
         window.location.replace("/login")

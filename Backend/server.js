@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 8000
 //ROUTES
 app.get("/", (req,res)=>{
     res.status(200).json({
-        message : "Welcome to Blood Bank Application"
+        message : "Welcome to Blood Bank Application."
     })
 })
 

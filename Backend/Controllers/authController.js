@@ -88,7 +88,7 @@ const currentUserController=async(req,res)=>{
     try{
         const user = await userModel.findOne({_id : req.body.userID})
         return res.status(200).send({
-            sucess : true,
+            success : true,
             message:"Getting User Details Successfully",
             user,
         })
@@ -96,7 +96,7 @@ const currentUserController=async(req,res)=>{
     }catch(err){
         console.log(err)
         return res.status(500).send({
-            sucess:false,
+            success:false,
             message:"Unable to get User",
             err,
         })
