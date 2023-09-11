@@ -12,6 +12,6 @@ router.post('/register', registerController)
 router.post('/login',loginController)
 
 //GET CURRENT USER || GET
-router.get('/current-user', authMiddleware, currentUserController)
+router.get('/current-user',authMiddleware, currentUserController)
 
 module.exports = router

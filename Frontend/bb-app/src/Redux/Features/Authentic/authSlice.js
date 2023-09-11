@@ -22,11 +22,25 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     });
+    // builder.addCase(userLogin.fulfilled, (state, { payload }) => {
+    //   state.loading = false;
+    //   state.user = payload.user;
+    //   state.token = payload.token;
+    // });
     builder.addCase(userLogin.fulfilled, (state, { payload }) => {
-      state.loading = false;
-      state.user = payload.user;
-      state.token = payload.token;
+      if (payload) {
+        // Assuming payload has a user and token property
+        state.user = payload.user;
+        state.token = payload.token;
+        state.loading = false;
+        state.error = null;
+      } else {
+        // Handle the case where the payload is missing or doesn't contain the expected data
+        state.loading = false;
+        state.error = "Invalid response format";
+      }
     });
+    
     builder.addCase(userLogin.rejected, (state, { payload }) => {
       state.loading = false;
       state.error = payload;
@@ -45,7 +59,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = payload;
     });
-    //GETTING CURRENT USER
+    // CURRENT user
     builder.addCase(getCurrentUser.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -60,9 +74,5 @@ const authSlice = createSlice({
     });
   },
 });
-
-
-
-
 
 export default authSlice;
