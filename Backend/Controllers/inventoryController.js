@@ -14,12 +14,12 @@ const inventoryController = async(req,res) => {
                 message : "User not found",
             })
         }
-        if(inventoryType === 'in' && user.role !== 'donar'){
-            return res.status(500).send({
-                success : false,
-                message : "Not a donar account",
-            })
-        }
+        // if(inventoryType === 'in' && user.role !== 'donar'){
+        //     return res.status(500).send({
+        //         success : false,
+        //         message : "Not a donar account",
+        //     })
+        // }
         if(inventoryType === 'out' && user.role !== 'hospital'){
             return res.status(500).send({
                 success : false,
