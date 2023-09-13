@@ -7,7 +7,7 @@ const Modal = () => {
   const[inventoryType, setInventoryType] = useState('in');
   const[quantity, setQuantity] = useState(0);
   const[bloodgroup, setBloodgroup]= useState('');
-  const[donarEmail, setDonarEmail] = useState("");
+  const[email, setEmail] = useState("");
   const {user} = useSelector(state => state.auth);
 
   //Handle Modal Function
@@ -17,19 +17,19 @@ const Modal = () => {
         return alert('Please provide all Fields')
       }
       const {data} = await API.post('/inventory/create-inventory',{
-        donarEmail,
-        email : user?.email,
-        orgnisation : user?._id,
+        email,
+        organisation : user?._id,
         inventoryType,
         bloodgroup,
         quantity 
       });
       if(data?.success){
         alert("New Record Added Successfully")
-        window.location.reload()
+         window.location.reload()
       }
     }catch(err){
       console.log(err)
+      alert(err.response.data.message)
       window.location.reload()
     }
 
@@ -66,9 +66,9 @@ const Modal = () => {
                   <input
                     type="radio"
                     name="inRadio"
-                    value={"in"}
+                    value="in"
                     onChange={(e) => setInventoryType(e.target.value)}
-                    defaultChecked
+                    checked={inventoryType === "in"}
                     className="form-check-input"
                   />
                   <label htmlFor="in" className="form-check-label">
@@ -79,8 +79,9 @@ const Modal = () => {
                   <input
                     type="radio"
                     name="inRadio"
-                    value={"out"}
+                    value="out"
                     onChange={(e) => setInventoryType(e.target.value)}
+                    checked={inventoryType === "out"}
                     className="form-check-input"
                   />
                   <label htmlFor="out" className="form-check-label">
@@ -93,7 +94,9 @@ const Modal = () => {
                 aria-label="Default select example"
                 onChange={(e) => setBloodgroup(e.target.value)}
               >
-                <option selected>Open this select menu</option>
+                <option defaultValue={"Open this select menu"}>
+                  Open this select menu
+                </option>
                 <option value={"O+"}>O+</option>
                 <option value={"O-"}>O-</option>
                 <option value={"AB+"}>AB+</option>
@@ -103,13 +106,23 @@ const Modal = () => {
                 <option value={"B+"}>B+</option>
                 <option value={"B-"}>B-</option>
               </select>
-              <InputType
-                label={"Donor Email"}
-                labelFor={"donarEmail"}
-                type={"email"}
-                value={donarEmail}
-                onChange={(e) => setDonarEmail(e.target.value)}
-              />
+              {inventoryType === "in" ? (
+                <InputType
+                  label={"Donor Email"}
+                  labelFor={"donarEmail"}
+                  type={"email"}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              ) : (
+                <InputType
+                  label={"Hospital Email"}
+                  labelFor={"hospitalEmail"}
+                  type={"email"}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              )}
               <InputType
                 label={"Quantity {ML}"}
                 labelFor={"quantity"}
@@ -126,7 +139,11 @@ const Modal = () => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={handleModalSubmit}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleModalSubmit}
+              >
                 Submit
               </button>
             </div>
