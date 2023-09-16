@@ -61,7 +61,7 @@ const HomePage = () => {
                       <td>{ele.bloodgroup}</td>
                       <td>{ele.inventoryType}</td>
                       <td>{ele.quantity}</td>
-                      <td>{ele.donarEmail}</td>
+                      <td>{ele.email}</td>
                       <td>{moment(ele.createdAt).format('DD/MM/YYYY hh:mm A')}</td>
                     </tr>
                   ))}
