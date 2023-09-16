@@ -124,4 +124,58 @@ const getInventoryController=async(req,res)=>{
     }
 }
 
-module.exports = {inventoryController, getInventoryController}
+//GET DONAR RECORDS
+const getDonarsControllers=async(req,res)=>{
+  try{
+    const organisation = req.body.userID;
+    //FIND DONARS
+    const donarID = await inventoryModel.distinct("donar",{
+      organisation
+    });
+    //console.log(donarID)
+    const donars = await userModel.find({_id : {$in : donarID}});
+    return res.status(201).send({
+      success :  true,
+      message : "GETTING DONARS RECORDS SUCCESSFULLY",
+      donars,
+    });
+  }catch(err){
+    console.log(err)
+    return res.status(500).send({
+      success : false,
+      message : "Error IN Donar API",
+      err
+    })
+  }
+};
+
+//GET HOSPITAL RECORDS
+const getHospitalControllers=async(req,res)=>{
+  try{
+
+    const organisation = req.body.userID;
+    //GET HOSPITAL-ID
+    const hospitalId = await inventoryModel.distinct('hospital',{
+      organisation
+    });
+    const hospitals = await userModel.find({
+      _id : {$in : hospitalId}
+    });
+    return res.status(200).send({
+      success :  true,
+      message : "GETTING HOSPITAL RECORDS SUCCESSFULLY",
+      hospitals,
+    })
+
+  }catch(err){
+    console.log(err)
+    res.status(500).send({
+      success : false,
+      message : "ERROR IN HOSPITAL API",
+      err
+    })
+  }
+}
+
+
+module.exports = {inventoryController, getInventoryController, getDonarsControllers, getHospitalControllers}

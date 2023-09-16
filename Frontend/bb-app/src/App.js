@@ -7,6 +7,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import PublicRoutes from "./components/Routes/PublicRoutes";
+import Donar from "./Pages/Dashboard/Donar";
+import Hospital from "./Pages/Dashboard/Hospital";
 
 function App() {
   return (
@@ -21,17 +23,39 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/donar"
+          element={
+            <ProtectedRoute>
+              <Donar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/hospital"
+          element={
+            <ProtectedRoute>
+              <Hospital />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/login" element={
-          <PublicRoutes>
-             <Login />
-          </PublicRoutes>
-        } />
-        <Route path="/register" element={
-          <PublicRoutes>
-            <Register />
-          </PublicRoutes>
-        } />
+        <Route
+          path="/login"
+          element={
+            <PublicRoutes>
+              <Login />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoutes>
+              <Register />
+            </PublicRoutes>
+          }
+        />
       </Routes>
     </div>
   );
