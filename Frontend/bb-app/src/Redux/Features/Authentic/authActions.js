@@ -13,7 +13,11 @@ export const userLogin = createAsyncThunk(
         localStorage.setItem("token", data.token);
         toast.success(data.message);
         setTimeout(() => {
-          window.location.replace("/");
+          if (role === 'donar') {
+            window.location.replace("/organisation");
+          } else {
+            window.location.replace("/");
+          }
         }, 1000);
         return data; // Return the entire response data for success
       } else {
