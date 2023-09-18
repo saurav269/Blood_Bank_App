@@ -124,6 +124,56 @@ const getInventoryController=async(req,res)=>{
     }
 }
 
+//GET ALL HOSPITAL BLOOD RECORDS
+const getInventoryHospitalController=async(req,res)=>{
+
+  try{
+      const inventory = await inventoryModel
+        .find(req.body.filters)
+        .populate("donar")
+        .populate("hospital")
+        .populate("organisation")
+        .sort({ createdAt: -1 });
+      return res.status(200).send({
+        success: true,
+        message: "Gettting hospital consumer recodrs successfuly",
+        inventory,
+      });
+  }catch(err){
+      console.log(err)
+      res.status(500).send({
+          success : false,
+          message : 'Error in getting hospital consumer records API',
+          err
+      })
+  }
+}
+
+//GET BLOOD RECORD OF 3
+const getRecentInventoryController=async(req,res)=>{
+  try{
+    const inventory = await inventoryModel.find({
+      organisation : req.body.userID,
+    })
+    .limit(3)
+    .sort({createdAt : -1});
+    return res.status(200).send({
+      success : true,
+      message : 'GETTING RECENT INVENTORY DATA',
+      inventory,
+    })
+
+  }catch(err){
+    console.log(err)
+    res.status(500).send({
+      success : false,
+      message : 'ERROR IN BLLOD RECORD API',
+      err,
+    })
+  }
+
+}
+
 //GET DONAR RECORDS
 const getDonarsControllers=async(req,res)=>{
   try{
@@ -188,8 +238,8 @@ const getOrganisationController=async(req,res)=>{
     })
     return res.status(200).send({
       success : true,
-      message : "GETTING ALL ORG SUCCESSFULLY",
-      organisations
+      message : "GETTING ALL ORG DATA SUCCESSFULLY",
+      organisations,
     })
   }catch(err){
     console.log(err)
@@ -202,5 +252,53 @@ const getOrganisationController=async(req,res)=>{
 
 }
 
+//GET ORGANISATION for HOSPITAL RECORDS
+const getOrganisationForHospitalController = async (req, res) => {
+  try {
+    const hospital = req.body.userID;
+    const orgId = await inventoryModel.distinct('organisation', { hospital });
 
-module.exports = {inventoryController, getInventoryController, getDonarsControllers, getHospitalControllers, getOrganisationController}
+    if (!orgId || orgId.length === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "No organisations found for the given hospital.",
+      });
+    }
+
+    // FIND ORGANISATION
+    const organisations = await userModel.find({
+      _id: { $in: orgId },
+    });
+
+    if (!organisations || organisations.length === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "No organizations found for the given hospital.",
+      });
+    }
+
+    return res.status(200).send({
+      success: true,
+      message: "GETTING ALL HOSPITAL-ORG DATA SUCCESSFULLY",
+      organisations,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      success: false,
+      message: "Error in HOSPITAL ORG API",
+      error: err,
+    });
+  }
+};
+
+module.exports = {
+  inventoryController,
+  getInventoryController,
+  getDonarsControllers,
+  getHospitalControllers,
+  getOrganisationController,
+  getOrganisationForHospitalController,
+  getInventoryHospitalController,
+  getRecentInventoryController
+};

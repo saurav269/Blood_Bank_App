@@ -6,6 +6,7 @@ import Layout from '../components/shared/Layout/Layout'
 import Modal from './../components/shared/modal/Modal';
 import API from '../Services/API'
 import moment from 'moment'
+import '../Styles/Analytics.css'
 
 const HomePage = () => {
   const {loading, error} = useSelector((state) => state.auth)
@@ -45,7 +46,7 @@ const HomePage = () => {
                 <i className="fa-solid fa-plus text-success py-4"></i>
                 Add Inventory
               </h3>
-              <table className="table">
+              <table className="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th scope="col">Blood Group</th>
