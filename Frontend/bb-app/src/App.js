@@ -7,9 +7,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import PublicRoutes from "./components/Routes/PublicRoutes";
-import Donar from './Pages/Dashboard/Donar';
-import Hospital from './Pages/Dashboard/Hospital';
-import OrganisationPage from './Pages/Dashboard/OrganisationPage';
+import Donar from "./Pages/Dashboard/Donar";
+import Hospital from "./Pages/Dashboard/Hospital";
+import OrganisationPage from "./Pages/Dashboard/OrganisationPage";
+import ConsumerPage from "./Pages/Dashboard/ConsumerPage";
+import Donation from "./Pages/Donation";
+import Analytics from "./Pages/Dashboard/Analytics";
 
 function App() {
   return (
@@ -37,6 +40,30 @@ function App() {
           element={
             <ProtectedRoute>
               <Hospital />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <Analytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/consumer"
+          element={
+            <ProtectedRoute>
+              <ConsumerPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donation"
+          element={
+            <ProtectedRoute>
+              <Donation />
             </ProtectedRoute>
           }
         />

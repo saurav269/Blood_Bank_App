@@ -1,6 +1,6 @@
 const express = require ('express')
 const authMiddleware = require('../middlewres/authMiddleware')
-const { inventoryController, getInventoryController, getDonarsControllers, getHospitalControllers, getOrganisationController, getOrganisationForHospitalController } = require('../Controllers/inventoryController')
+const { inventoryController, getInventoryController, getDonarsControllers, getHospitalControllers, getOrganisationController, getOrganisationForHospitalController, getInventoryHospitalController } = require('../Controllers/inventoryController')
 
 const router = express.Router()
 
@@ -10,6 +10,9 @@ router.post('/create-inventory', authMiddleware, inventoryController)
 
 //GET ALL BLOOD RECORDS
 router.get('/get-inventory',authMiddleware, getInventoryController)
+
+//GET HOSPITAL BLOOD RECORDS
+router.post('/get-inventory-hospital',authMiddleware, getInventoryHospitalController)
 
 //GET ALL DONARS RECORDS
 router.get('/get-donars',authMiddleware, getDonarsControllers)
