@@ -1,0 +1,10 @@
+/* Custom CSS */
+.table thead th {
+    background-color: #007bff; /* Blue background for table header */
+    color: #fff; /* White text color for table header */
+    text-align: center; /* Center-align text in table header */
+  }
+  
+  .table tbody td {
+    text-align: center; /* Center-align text in table cells */
+  }
