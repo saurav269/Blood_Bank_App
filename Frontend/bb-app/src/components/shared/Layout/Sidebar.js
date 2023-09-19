@@ -53,7 +53,7 @@ const Sidebar = () => {
                   location.pathname === "/hospital-list" && "active"
                 }`}
               >
-                <i className="fa-solid fa-warehouse"></i>
+                <i className="fa-solid fa-hospital"></i>
                 <Link to="/hospital-list">Hospital List</Link>
               </div>
               <div
@@ -61,7 +61,7 @@ const Sidebar = () => {
                   location.pathname === "/org-list" && "active"
                 }`}
               >
-                <i className="fa-solid fa-hospital"></i>
+                <i className="fa-solid fa-warehouse"></i>
                 <Link to="/org-list">Organisation List</Link>
               </div>
             </>
