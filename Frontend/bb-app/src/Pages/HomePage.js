@@ -7,10 +7,12 @@ import Modal from './../components/shared/modal/Modal';
 import API from '../Services/API'
 import moment from 'moment'
 import '../Styles/Analytics.css'
+import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
-  const {loading, error} = useSelector((state) => state.auth)
+  const {loading, error, user} = useSelector((state) => state.auth)
   const [data, setData] = useState([]);
+  const navigate = useNavigate()
 
   //GET INVENTORY FUNCTION
   const getBloodRecords=async()=>{
@@ -31,6 +33,7 @@ const HomePage = () => {
   return (
     <>
       <Layout>
+        {user?.role === 'admin' && navigate('/admin')}
         {error && <span>{toast.error(error)}</span>}
         {loading ? (
           <Spinner />

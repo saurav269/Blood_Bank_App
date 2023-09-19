@@ -22,6 +22,7 @@ connectDB()
 app.use('/api/v1/auth', require('./Routes/authRoute'));
 app.use('/api/v1/inventory', require('./Routes/inventoryRoute'));
 app.use('/api/v1/analytics', require('./Routes/analyticsRoute'));
+app.use('/api/v1/admin', require('./Routes/adminRoute'));
 
 //PORT
 const PORT = process.env.PORT || 8000

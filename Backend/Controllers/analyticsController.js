@@ -14,7 +14,7 @@ const mongoose = require("mongoose");
                     {$match : {
                         bloodgroup : bloodgroup,
                         inventoryType : 'in',
-                        organisation
+                        organisation,
                     }},
                     {
                         $group : {
