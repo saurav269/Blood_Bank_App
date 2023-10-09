@@ -30,7 +30,7 @@ const Form = ({ formType, formTitle, submitButton }) => {
           address,
           phone
         );
-      }}>
+      }} style={{border : "0px solid grey", padding:"10px 20px 10px 20px",  boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
         <h1 className="text-center">{formTitle}</h1>
         <hr />
         <div className="d-flex mb-3">
