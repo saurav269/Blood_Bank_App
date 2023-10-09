@@ -37,15 +37,29 @@ const Header = () => {
             location.pathname === "/donar" ||
             location.pathname === "/hospital" ? (
               <li className="nav-item mx-3">
-                <Link to="/analytics" className="nav-link">
-                  <button className="btn btn-outline-warning">Analytics</button>
-                </Link>
+                {user?.role === "donar" ? (
+                  <button className="btn btn-outline-warning" disabled>
+                    Analytics
+                  </button>
+                ) : (
+                  <Link to="/analytics" className="nav-link">
+                    <button className="btn btn-outline-warning">
+                      Analytics
+                    </button>
+                  </Link>
+                )}
               </li>
             ) : (
               <li className="nav-item mx-3">
-                <Link to="/" className="nav-link">
-                  <button className="btn btn-outline-warning">Home</button>
-                </Link>
+                {user?.role === "donar" ? (
+                  <button className="btn btn-outline-warning" disabled>
+                    Home
+                  </button>
+                ) : (
+                  <Link to="/" className="nav-link">
+                    <button className="btn btn-outline-warning">Home</button>
+                  </Link>
+                )}
               </li>
             )}
             <li className="nav-item mx-3">

@@ -28,7 +28,7 @@ const ConsumerPage = () => {
 
     useEffect(() =>{
         getDonar()
-    },[user])
+    },[])
   return (
     <Layout>
       <div className="container">
