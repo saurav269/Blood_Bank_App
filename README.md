@@ -1,2 +1,2 @@
 # Blood_Bank_App
-<h4>Description</h4><p>It is an e-commerce(book)app, where users can search for any kind of book and also order any kind of book within a valuable range</p>
+<h4>Description</h4><p>A blood bank app is a smartphone application that allows users to search for and donate blood. The app also stores information about blood donors, such as their contact information and donation history.</p>
